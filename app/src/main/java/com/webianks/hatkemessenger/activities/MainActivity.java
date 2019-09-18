@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_CONTACTS);
         if (permissionCheck == 0)
-            getSupportLoaderManager().initLoader(Constants.ALL_SMS_LOADER, null, this);
+            LoaderManager.getInstance(this).initLoader(Constants.ALL_SMS_LOADER, null, this);
 
 
     }

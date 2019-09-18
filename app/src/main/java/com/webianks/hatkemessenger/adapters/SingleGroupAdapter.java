@@ -41,7 +41,7 @@ public class SingleGroupAdapter extends RecyclerView.Adapter<SingleGroupAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext()); //(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.single_sms_detailed, parent, false);
         return new MyViewHolder(view);
     }
