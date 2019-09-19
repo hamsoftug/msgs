@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 boolean new_sms = intent.getBooleanExtra("new_sms", false);
 
                 if (new_sms)
-                    getSupportLoaderManager().restartLoader(Constants.ALL_SMS_LOADER, null, MainActivity.this);
+                    LoaderManager.getInstance(MainActivity.this).restartLoader(Constants.ALL_SMS_LOADER, null, MainActivity.this);
 
             }
         };
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     } else
 
 
-                        getSupportLoaderManager().initLoader(Constants.ALL_SMS_LOADER, null, this);
+                        LoaderManager.getInstance(this).initLoader(Constants.ALL_SMS_LOADER, null, this);
 
 
                 } else {
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    getSupportLoaderManager().initLoader(Constants.ALL_SMS_LOADER, null, this);
+                    LoaderManager.getInstance(this).initLoader(Constants.ALL_SMS_LOADER, null, this);
 
                 } else {
                     Toast.makeText(getApplicationContext(),
@@ -309,14 +309,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onQueryTextSubmit(String query) {
         mCurFilter = !TextUtils.isEmpty(query) ? query : null;
-        getSupportLoaderManager().restartLoader(Constants.ALL_SMS_LOADER, null, this);
+        LoaderManager.getInstance(this).restartLoader(Constants.ALL_SMS_LOADER, null, this);
         return true;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
         mCurFilter = !TextUtils.isEmpty(newText) ? newText : null;
-        getSupportLoaderManager().restartLoader(Constants.ALL_SMS_LOADER, null, this);
+        LoaderManager.getInstance(this).restartLoader(Constants.ALL_SMS_LOADER, null, this);
         return true;
     }
 
@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onPause();
 
         this.unregisterReceiver(this.mReceiver);
-        getSupportLoaderManager().destroyLoader(Constants.ALL_SMS_LOADER);
+        LoaderManager.getInstance(this).destroyLoader(Constants.ALL_SMS_LOADER);
     }
 
 
